@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+.ipynb_checkpoints/
+
+# Data (large files — keep out of git, note in README instead)
+data/creditcard.csv
+
+# Models & reports (regenerate by running the pipeline)
+models/*.pkl
+reports/*.png
+reports/*.csv
+
+# OS
+.DS_Store
