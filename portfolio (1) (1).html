@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pawan Kalindar | AI-Based Financial Fraud Detection</title>
+<style>
+:root{--bg:#050816;--card:rgba(13,23,49,.72);--text:#eef4ff;--muted:#9eabc5;--cyan:#42e8ff;--violet:#9b7bff;--pink:#ff65c3;--line:rgba(120,160,220,.18);--shadow:0 0 35px rgba(66,232,255,.10);}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 15% 10%,rgba(66,232,255,.10),transparent 28%),radial-gradient(circle at 85% 20%,rgba(155,123,255,.12),transparent 30%),var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+.nav{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);width:min(1120px,92%);z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(5,8,22,.75);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(18px)}
+.logo{font-weight:800}.logo span{color:var(--cyan)}
+.navlinks{display:flex;gap:16px;color:var(--muted);font-size:.85rem;flex-wrap:wrap}.navlinks a:hover{color:var(--cyan)}
+.menu{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:9px;padding:7px 10px}
+.hero{min-height:100vh;display:grid;place-items:center;padding:130px 0 60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid rgba(66,232,255,.3);border-radius:999px;background:rgba(66,232,255,.06);color:var(--cyan);font-size:.8rem}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35;transform:scale(.7)}}
+h1{font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.05;letter-spacing:-2px;margin:20px 0}
+.gradient{background:linear-gradient(100deg,var(--cyan),#fff,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:600px;color:var(--muted);font-size:1.05rem}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{padding:12px 18px;border-radius:12px;border:1px solid var(--line);font-weight:700;font-size:.9rem;cursor:pointer}
+.primary{background:linear-gradient(100deg,var(--cyan),var(--violet));color:#04101b;border:0}
+.secondary{background:rgba(255,255,255,.035)}.btn:hover{transform:translateY(-2px)}
+.hero-card{height:380px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,rgba(17,31,65,.8),rgba(8,13,31,.8));box-shadow:var(--shadow);position:relative;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(2px);animation:float 5s ease-in-out infinite}
+.o1{width:150px;height:150px;background:rgba(66,232,255,.22);top:35px;left:30px}
+.o2{width:120px;height:120px;background:rgba(155,123,255,.22);right:30px;bottom:40px;animation-delay:-2s}
+@keyframes float{50%{transform:translateY(-18px) scale(1.05)}}
+.data-panel{position:absolute;inset:30px;display:flex;flex-direction:column;justify-content:space-between}
+.panel-top{display:flex;justify-content:space-between;color:var(--muted);font-size:.72rem}
+.bars{height:160px;display:flex;align-items:end;gap:8px}.bar{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(to top,var(--violet),var(--cyan));animation:bars 2.4s ease-in-out infinite alternate}
+.bar:nth-child(1){height:40%}.bar:nth-child(2){height:75%;animation-delay:.2s}.bar:nth-child(3){height:50%;animation-delay:.4s}.bar:nth-child(4){height:90%;animation-delay:.6s}.bar:nth-child(5){height:60%;animation-delay:.8s}.bar:nth-child(6){height:80%;animation-delay:1s}
+@keyframes bars{to{filter:brightness(1.35)}}
+.section{padding:90px 0}.section-head{margin-bottom:32px}.eyebrow{color:var(--cyan);font-size:.75rem;letter-spacing:2px;text-transform:uppercase}.section h2{font-size:clamp(1.7rem,3.5vw,2.6rem);margin-top:8px}.muted{color:var(--muted)}
+.glass,.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);backdrop-filter:blur(14px)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(66,232,255,.07);border:1px solid rgba(66,232,255,.2);font-size:.76rem;color:#b9f7ff;margin:4px 4px 0 0}
+.pipeline{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pstep{padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(10,18,40,.65);font-size:.85rem}
+.arrow{color:var(--cyan);font-weight:700}
+table{width:100%;border-collapse:collapse}
+th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:.85rem}
+th{color:var(--cyan);font-size:.75rem;text-transform:uppercase;letter-spacing:1px}
+.metric{padding:18px;border-radius:16px;background:rgba(10,18,40,.65);border:1px solid var(--line);text-align:center}
+.metric b{display:block;font-size:1.5rem;color:var(--cyan)}
+.metric small{color:var(--muted)}
+.badge-warn{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(255,101,195,.1);border:1px solid rgba(255,101,195,.3);color:var(--pink);font-size:.72rem;margin-bottom:10px}
+.xai-panel{border:1px solid rgba(255,101,195,.3);border-radius:18px;padding:22px;background:rgba(255,101,195,.04)}
+.feat-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:.85rem}
+.pos{color:#7dffb0}.neg{color:#ff8a8a}
+.arch{display:flex;flex-direction:column;align-items:center;gap:6px}
+.arch div.pstep{width:min(340px,90%);text-align:center}
+.demo-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input,textarea{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:inherit;font-size:.88rem}
+.result-box{margin-top:16px;padding:18px;border-radius:14px;border:1px solid var(--line);background:rgba(10,18,40,.65);display:none}
+.timeline{border-left:1px solid rgba(66,232,255,.3);margin-left:10px;padding-left:24px}
+.edu{position:relative;margin-bottom:20px}.edu:before{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:var(--cyan);left:-30px;top:6px;box-shadow:0 0 14px var(--cyan)}
+.contact-card{display:flex;align-items:center;gap:15px}.icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:rgba(66,232,255,.08);color:var(--cyan);flex-shrink:0}
+footer{padding:30px 0 calc(45px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:.82rem;border-top:1px solid var(--line)}
+.reveal{opacity:0;transform:translateY(22px);transition:.7s}.reveal.show{opacity:1;transform:none}
+.note{font-size:.78rem;color:var(--pink);margin-top:8px}
+@media(max-width:800px){.navlinks{display:none}.menu{display:block}.nav.open .navlinks{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;padding:18px;background:rgba(5,8,22,.97);border:1px solid var(--line);border-radius:15px}
+.hero-grid,.grid2,.demo-form{grid-template-columns:1fr}.hero-card{height:300px}.grid3{grid-template-columns:1fr 1fr}.grid4{grid-template-columns:1fr 1fr}.section{padding:65px 0}}
+@media(max-width:500px){.grid3,.grid4{grid-template-columns:1fr}}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"><a class="logo" href="#home">Pawan<span>.</span></a>
+<div class="navlinks"><a href="#about">About</a><a href="#pipeline">Pipeline</a><a href="#models">Models</a><a href="#xai">XAI</a><a href="#demo">Demo</a><a href="#contact">Contact</a></div>
+<button class="menu" id="menu">☰</button></nav>
+
+<header class="hero" id="home"><div class="container hero-grid">
+<div class="reveal"><div class="badge"><span class="dot"></span> Machine Learning • Explainable AI</div>
+<h1>AI-Based <span class="gradient">Financial Fraud Detection</span></h1>
+<p class="muted" style="font-weight:600">Machine Learning + Explainable AI (XAI)</p>
+<p style="margin-top:14px">A system that detects potentially fraudulent financial transactions using machine learning, and uses Explainable AI techniques to make every prediction interpretable and trustworthy.</p>
+<div class="actions"><a class="btn primary" href="#pipeline">View Project</a><a class="btn secondary" href="https://github.com/pavan01kalindar/fraud-detection-ml" target="_blank">GitHub</a><a class="btn secondary" href="[Insert Research Paper Link]" target="_blank">Download Research Paper</a></div></div>
+<div class="hero-card reveal"><div class="orb o1"></div><div class="orb o2"></div><div class="data-panel"><div class="panel-top"><span>FRAUD ENGINE</span><span>ML + XAI</span></div><div class="bars"><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i></div><div class="panel-top"><span>PYTHON</span><span>SHAP • LIME</span></div></div></div>
+</div></header>
+
+<main>
+<section class="section" id="about"><div class="container"><div class="section-head reveal"><div class="eyebrow">01 / About the Project</div><h2>Detecting fraud, and explaining why.</h2></div>
+<div class="grid2">
+<div class="glass reveal"><p class="muted">Financial fraud refers to deceptive transactions designed to gain unauthorized financial benefit — a growing risk as digital payments scale. Automated detection is essential because manual review cannot keep pace with transaction volume. This project applies machine learning to flag suspicious transactions, and layers Explainable AI on top so that every flagged decision can be understood, audited, and trusted by analysts and regulators rather than treated as a black box.</p></div>
+<div class="glass reveal"><b style="color:var(--cyan)">Project Objectives</b><ul style="margin-top:12px;padding-left:18px;color:var(--muted);font-size:.9rem;line-height:2">
+<li>Detect fraudulent transactions accurately</li><li>Reduce false positives</li><li>Handle imbalanced financial datasets</li><li>Compare multiple ML algorithms</li><li>Provide explainable predictions</li><li>Improve trust and transparency</li></ul></div>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">02 / Problem Statement</div><h2>Why traditional systems fall short.</h2></div>
+<div class="card reveal"><p class="muted">Traditional rule-based fraud detection systems can struggle with evolving fraud patterns and large transaction volumes. Rules are static, while fraud tactics constantly change. The proposed system uses machine learning to identify suspicious transactions adaptively, while XAI techniques help explain <em>why</em> a transaction was classified as fraudulent — closing the gap between accuracy and accountability.</p></div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">03 / Technologies Used</div><h2>The tech stack.</h2></div>
+<div class="reveal" style="display:flex;flex-wrap:wrap;gap:10px">
+<span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Scikit-learn</span><span class="pill">Matplotlib</span><span class="pill">Seaborn</span><span class="pill">XGBoost</span><span class="pill">SHAP</span><span class="pill">LIME</span><span class="pill">Jupyter Notebook</span><span class="pill">Git / GitHub</span>
+</div></div></section>
+
+<section class="section" id="pipeline"><div class="container"><div class="section-head reveal"><div class="eyebrow">04 / ML Pipeline</div><h2>From raw data to explained predictions.</h2></div>
+<div class="pipeline reveal">
+<span class="pstep">Data Collection</span><span class="arrow">→</span><span class="pstep">Preprocessing</span><span class="arrow">→</span><span class="pstep">EDA</span><span class="arrow">→</span><span class="pstep">Feature Engineering</span><span class="arrow">→</span><span class="pstep">Class Imbalance Handling</span><span class="arrow">→</span><span class="pstep">Model Training</span><span class="arrow">→</span><span class="pstep">Model Evaluation</span><span class="arrow">→</span><span class="pstep">Explainable AI</span><span class="arrow">→</span><span class="pstep">Fraud Prediction</span>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">05 / Dataset</div><h2>What the model learns from.</h2></div>
+<div class="grid4 reveal">
+<div class="metric"><b>[Insert]</b><small>Transactions</small></div>
+<div class="metric"><b>[Insert]</b><small>Features</small></div>
+<div class="metric"><b>[Insert]%</b><small>Fraud cases</small></div>
+<div class="metric"><b>[Insert]%</b><small>Legitimate cases</small></div>
+</div>
+<div class="glass reveal" style="margin-top:20px"><p class="muted">Financial fraud datasets are typically <strong>highly imbalanced</strong> — fraudulent transactions form a small minority of total volume. Important features generally include transaction amount, time, merchant/location patterns, and behavioural indicators. <span style="color:var(--pink)">Exact dataset statistics are placeholders above pending final data selection.</span></p></div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">06 / Data Preprocessing</div><h2>Preparing the data.</h2></div>
+<div class="grid3 reveal">
+<div class="card"><b>Cleaning</b><p class="muted" style="margin-top:8px;font-size:.88rem">Missing-value handling, duplicate removal, outlier analysis.</p></div>
+<div class="card"><b>Transformation</b><p class="muted" style="margin-top:8px;font-size:.88rem">Feature scaling, categorical encoding where required.</p></div>
+<div class="card"><b>Split & Balance</b><p class="muted" style="margin-top:8px;font-size:.88rem">Train/test split with class imbalance handled via SMOTE or class weighting.</p></div>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">07 / Exploratory Data Analysis</div><h2>Understanding the patterns.</h2></div>
+<div class="grid3 reveal">
+<div class="card" style="text-align:center;padding:30px 20px"><div style="font-size:1.8rem">📊</div><p class="muted" style="margin-top:10px;font-size:.85rem">Fraud vs legitimate distribution</p></div>
+<div class="card" style="text-align:center;padding:30px 20px"><div style="font-size:1.8rem">💰</div><p class="muted" style="margin-top:10px;font-size:.85rem">Transaction amount distribution</p></div>
+<div class="card" style="text-align:center;padding:30px 20px"><div style="font-size:1.8rem">🔥</div><p class="muted" style="margin-top:10px;font-size:.85rem">Correlation heatmap</p></div>
+</div><p class="note reveal">Chart placeholders shown above — to be replaced with actual visualizations once notebook outputs are finalized.</p></div></section>
+
+<section class="section" id="models"><div class="container"><div class="section-head reveal"><div class="eyebrow">08 / Machine Learning Models</div><h2>Comparing algorithms.</h2></div>
+<div class="glass reveal" style="overflow-x:auto"><table><tr><th>Model</th><th>Purpose</th><th>Advantage</th><th>Limitation</th><th>F1 Score</th></tr>
+<tr><td>Logistic Regression</td><td>Baseline linear classifier</td><td>Fast, interpretable</td><td>Weak on non-linear patterns</td><td>[Insert]</td></tr>
+<tr><td>Decision Tree</td><td>Rule-based splits</td><td>Easy to visualize</td><td>Prone to overfitting</td><td>[Insert]</td></tr>
+<tr><td>Random Forest</td><td>Ensemble of trees</td><td>Robust, handles imbalance well</td><td>Slower, less transparent</td><td>[Insert]</td></tr>
+<tr><td>XGBoost</td><td>Gradient boosted trees</td><td>High accuracy on tabular data</td><td>More complex tuning</td><td>[Insert]</td></tr>
+</table></div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">09 / Model Evaluation</div><h2>Why accuracy isn't enough.</h2></div>
+<div class="glass reveal"><p class="muted">Because fraud datasets are highly imbalanced, accuracy alone can be misleading — a model predicting "legitimate" every time could still score high accuracy while catching zero fraud. Precision, Recall, F1-score, ROC-AUC and the Confusion Matrix give a truer picture of model performance.</p>
+<div class="grid4" style="margin-top:20px">
+<div class="metric"><b>[Insert]</b><small>Precision</small></div><div class="metric"><b>[Insert]</b><small>Recall</small></div><div class="metric"><b>[Insert]</b><small>F1-Score</small></div><div class="metric"><b>[Insert]</b><small>ROC-AUC</small></div>
+</div></div></div></section>
+
+<section class="section" id="xai"><div class="container"><div class="section-head reveal"><div class="eyebrow">10 / Explainable AI (XAI)</div><h2>Making predictions trustworthy.</h2></div>
+<div class="glass reveal" style="margin-bottom:20px"><p class="muted">In fraud detection, a "black box" decision isn't enough — analysts and regulators need to know <em>why</em> a transaction was flagged. SHAP (SHapley Additive exPlanations) provides both global and local explanations, quantifying each feature's contribution. LIME approximates model behaviour locally around a single prediction. Together they turn opaque predictions into auditable, interpretable decisions.</p></div>
+<div class="xai-panel reveal"><span class="badge-warn">EXAMPLE — not a real prediction</span>
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:14px"><div><small class="muted">Prediction</small><div style="font-weight:700;color:var(--pink)">Fraudulent Transaction</div></div><div><small class="muted">Probability</small><div style="font-weight:700">[Insert Model Probability]</div></div></div>
+<div class="feat-row"><span>Feature A</span><span class="pos">+ increases fraud likelihood</span></div>
+<div class="feat-row"><span>Feature B</span><span class="pos">+ increases fraud likelihood</span></div>
+<div class="feat-row"><span>Feature C</span><span class="neg">− decreases fraud likelihood</span></div>
+<div class="feat-row" style="border-bottom:0"><span>Feature D</span><span class="pos">+ increases fraud likelihood</span></div>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">11 / SHAP Visualization</div><h2>Feature-level attribution.</h2></div>
+<div class="grid3 reveal">
+<div class="card" style="text-align:center;padding:28px 18px"><div style="font-size:1.6rem">📈</div><p class="muted" style="margin-top:8px;font-size:.84rem">SHAP feature importance</p></div>
+<div class="card" style="text-align:center;padding:28px 18px"><div style="font-size:1.6rem">🌐</div><p class="muted" style="margin-top:8px;font-size:.84rem">SHAP summary plot</p></div>
+<div class="card" style="text-align:center;padding:28px 18px"><div style="font-size:1.6rem">🔍</div><p class="muted" style="margin-top:8px;font-size:.84rem">Individual explanation</p></div>
+</div><p class="muted reveal" style="margin-top:16px;font-size:.88rem">SHAP values indicate the direction and magnitude of each feature's effect — positive values push a prediction toward "fraud," negative values push it toward "legitimate."</p></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">12 / Results</div><h2>Performance dashboard.</h2></div>
+<div class="glass reveal"><p class="muted" style="margin-bottom:16px">Best-performing model: <strong>[Insert Model]</strong></p>
+<div class="grid4"><div class="metric"><b>[Insert]</b><small>Accuracy</small></div><div class="metric"><b>[Insert]</b><small>Precision</small></div><div class="metric"><b>[Insert]</b><small>Recall</small></div><div class="metric"><b>[Insert]</b><small>F1 Score</small></div></div>
+<div class="metric" style="margin-top:16px"><b>[Insert]</b><small>ROC-AUC</small></div></div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">13 / Project Architecture</div><h2>System flow.</h2></div>
+<div class="arch reveal">
+<div class="pstep">Transaction Data</div><span class="arrow">↓</span><div class="pstep">Preprocessing</div><span class="arrow">↓</span><div class="pstep">Feature Engineering</div><span class="arrow">↓</span><div class="pstep">ML Models</div><span class="arrow">↓</span><div class="pstep">Fraud Classification</div><span class="arrow">↓</span><div class="pstep">XAI Layer</div><span class="arrow">↓</span><div class="pstep" style="border-color:var(--cyan)">Prediction + Explanation</div>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">14 / Real-World Applications</div><h2>Where this fits.</h2></div>
+<div class="grid3 reveal">
+<div class="card">Banking</div><div class="card">Credit Card Companies</div><div class="card">Online Payments</div><div class="card">E-commerce</div><div class="card">Insurance</div><div class="card">Financial Institutions</div>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="grid2">
+<div class="reveal"><div class="section-head"><div class="eyebrow">15 / Limitations</div><h2>Where it can fall short.</h2></div>
+<ul style="padding-left:18px;color:var(--muted);font-size:.9rem;line-height:2.1"><li>Dataset dependency</li><li>Class imbalance</li><li>Concept drift over time</li><li>False positives</li><li>Model interpretability limits</li><li>Privacy & security considerations</li></ul></div>
+<div class="reveal"><div class="section-head"><div class="eyebrow">16 / Future Scope</div><h2>What's next.</h2></div>
+<ul style="padding-left:18px;color:var(--muted);font-size:.9rem;line-height:2.1"><li>Real-time fraud detection</li><li>Deep learning models</li><li>Graph neural networks</li><li>Adaptive learning</li><li>Advanced XAI techniques</li><li>Cloud deployment & API integration</li></ul></div>
+</div></div></section>
+
+<section class="section" id="demo"><div class="container"><div class="section-head reveal"><div class="eyebrow">17 / Demo</div><h2>Try a prediction.</h2><p class="badge-warn" style="margin-top:6px">Frontend demo only — no backend model connected, predictions are simulated</p></div>
+<div class="glass reveal">
+<div class="demo-form">
+<input id="amt" type="number" placeholder="Transaction Amount">
+<input id="time" type="text" placeholder="Transaction Time">
+<input id="loc" type="text" placeholder="Location / Merchant Category">
+<input id="freq" type="number" placeholder="Recent Transaction Frequency">
+</div>
+<button class="btn primary" style="margin-top:16px" onclick="runDemo()">Predict Fraud</button>
+<div class="result-box" id="result">
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><div><small class="muted">Prediction</small><div id="pred" style="font-weight:700"></div></div><div><small class="muted">Confidence</small><div id="conf" style="font-weight:700"></div></div></div>
+<p class="muted" style="margin-top:10px;font-size:.85rem" id="expl"></p>
+</div>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="section-head reveal"><div class="eyebrow">18 / Project Links</div><h2>Explore further.</h2></div>
+<div class="actions reveal"><a class="btn secondary" href="https://github.com/pavan01kalindar/fraud-detection-ml" target="_blank">GitHub Repository</a><a class="btn secondary" href="[Insert Jupyter Notebook Link]" target="_blank">Jupyter Notebook</a><a class="btn secondary" href="[Insert Dataset Link]" target="_blank">Dataset</a><a class="btn secondary" href="[Insert Research Paper Link]" target="_blank">Research Paper</a><a class="btn secondary" href="[Insert Project Report Link]" target="_blank">Project Report</a><a class="btn secondary" href="https://www.linkedin.com/in/pavankalindar" target="_blank">LinkedIn</a></div></div></section>
+
+<section class="section" id="about-me"><div class="container"><div class="section-head reveal"><div class="eyebrow">19 / About Me</div><h2>The person behind the project.</h2></div>
+<div class="grid2 reveal">
+<div class="glass"><div class="timeline"><div class="edu"><h3>Pawan Kalindar</h3><small style="color:var(--cyan)">[Insert Degree] · [Insert College Name]</small></div></div>
+<p class="muted" style="margin-top:6px">Machine Learning / AI student focused on building practical, explainable AI systems.</p></div>
+<div class="glass"><b style="color:var(--cyan)">Skills</b><div style="margin-top:10px">
+<span class="pill">Machine Learning</span><span class="pill">Python</span><span class="pill">Data Science</span><span class="pill">AI</span><span class="pill">XAI</span></div></div>
+</div></div></section>
+
+<section class="section" id="contact"><div class="container"><div class="section-head reveal"><div class="eyebrow">20 / Contact</div><h2>Let's connect.</h2></div>
+<div class="grid2 reveal">
+<a class="card contact-card" href="mailto:Pavankalindar123@gmail.com"><span class="icon">✉</span><div><small class="muted">Email</small><br>Pavankalindar123@gmail.com</div></a>
+<a class="card contact-card" href="https://www.linkedin.com/in/pavankalindar" target="_blank"><span class="icon">in</span><div><small class="muted">LinkedIn</small><br>Pawan Kalindar</div></a>
+</div>
+<div class="card reveal" style="margin-top:20px"><div class="demo-form">
+<input placeholder="Name"><input placeholder="Email">
+</div><textarea placeholder="Message" style="margin-top:12px;min-height:100px"></textarea>
+<button class="btn primary" style="margin-top:14px">Send Message</button></div></div></section>
+</main>
+<footer>© 2026 Pawan Kalindar. Machine Learning Portfolio.</footer>
+
+<script>
+const nav=document.getElementById('nav'),menu=document.getElementById('menu');
+menu.onclick=()=>nav.classList.toggle('open');
+document.querySelectorAll('.navlinks a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(x=>obs.observe(x));
+function runDemo(){
+  const box=document.getElementById('result');
+  const isFraud=Math.random()>0.6;
+  box.style.display='block';
+  document.getElementById('pred').textContent=isFraud?'Fraud (simulated)':'Legitimate (simulated)';
+  document.getElementById('pred').style.color=isFraud?'#ff65c3':'#7dffb0';
+  document.getElementById('conf').textContent=(70+Math.random()*25).toFixed(1)+'%';
+  document.getElementById('expl').textContent='Explanation: this is a simulated frontend-only result. Connect a trained model and SHAP/LIME backend to generate real explanations.';
+}
+</script>
+</body>
+</html>
